@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=0">
+	<title>Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent & Client-Hints data using JavaScript</title>
+</head>
+<body>
+	<h1>Detect Browser</h1>
+	<p>Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent & Client-Hints data using JavaScript</p>
+
+	<h2>Input</h2>
+	<label>User-Agent:</label><br/>
+	<textarea id="platform" cols="100" rows="1" readonly>A</textarea><br/>
+	<br/>
+	<label>User-Agent:</label><br/>
+	<textarea id="userAgent" cols="100" rows="1" readonly>A</textarea><br/>
+
+	<h2>Result</h2>
+
+	<dl>
+		<dt id="mobile">mobile()</dt>
+		<dt id="ios">iOS()</dt>
+		<dt id="iosversion">iOSversion()</dt>
+	</dl>
+
+	<!-- <button id="browse" onclick="check()" style="background-color: #ec0041;color: #fff;">Check</button> -->
+
+	<script>
+		function mobile() {
+			if (navigator.userAgent.match(/Android/i)
+			|| navigator.userAgent.match(/webOS/i)
+			|| navigator.userAgent.match(/iPhone/i)
+			|| navigator.userAgent.match(/iPad/i)
+			|| navigator.userAgent.match(/iPod/i)
+			|| navigator.userAgent.match(/BlackBerry/i)
+			|| navigator.userAgent.match(/Windows Phone/i)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		function iOS() {
+			return [
+				'iPad Simulator',
+				'iPhone Simulator',
+				'iPod Simulator',
+				'iPad',
+				'iPhone',
+				'iPod'
+			].includes(navigator.platform)
+			// iPad on iOS 13 detection
+			|| (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+		}
+		function iOSversion() {
+			if (iOS) { // <-- Use the one here above
+			if (window.indexedDB) { return 'iOS 8 and up'; }
+			if (window.SpeechSynthesisUtterance) { return 'iOS 7'; }
+			if (window.webkitAudioContext) { return 'iOS 6'; }
+			if (window.matchMedia) { return 'iOS 5'; }
+			if (window.history && 'pushState' in window.history) { return 'iOS 4'; }
+			return 'iOS 3 or earlier';
+			}
+			return 'Not an iOS device';
+		}
+		document.getElementById('platform').value = navigator.platform;
+		document.getElementById('userAgent').value = navigator.userAgent;
+		document.getElementById("mobile").innerHTML = "mobile() is " + mobile();
+		document.getElementById("ios").innerHTML = "iOS() is " + iOS();
+		document.getElementById("iosversion").innerHTML = "iOSversion() is " + iOSversion();
+	</script>
+</body>
+</html>
