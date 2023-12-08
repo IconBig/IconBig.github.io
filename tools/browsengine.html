@@ -10,11 +10,20 @@
 	<p>Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent & Client-Hints data using JavaScript</p>
 
 	<h2>Input</h2>
-	<label>User-Agent:</label><br/>
-	<textarea id="platform" cols="100" rows="1" readonly>A</textarea><br/>
+	<label>Platform:</label><br/>
+	<textarea id="platform" cols="100" rows="1" readonly></textarea><br/>
 	<br/>
 	<label>User-Agent:</label><br/>
-	<textarea id="userAgent" cols="100" rows="1" readonly>A</textarea><br/>
+	<textarea id="userAgent" cols="100" rows="1" readonly></textarea><br/>
+	<br/>
+	<label>MaxTouchPoints:</label><br/>
+	<textarea id="maxTouchPoints" cols="100" rows="1" readonly></textarea><br/>
+	<br/>
+	<label>msMaxTouchPoints:</label><br/>
+	<textarea id="msMaxTouchPoints" cols="100" rows="1" readonly></textarea><br/>
+	<br/>
+	<label>Orientation:</label><br/>
+	<textarea id="orientation" cols="100" rows="1" readonly></textarea><br/>
 
 	<h2>Result</h2>
 
@@ -65,6 +74,9 @@
 		}
 		document.getElementById('platform').value = navigator.platform;
 		document.getElementById('userAgent').value = navigator.userAgent;
+		document.getElementById('maxTouchPoints').value = navigator.MaxTouchPoints;
+		document.getElementById('msMaxTouchPoints').value = navigator.msMaxTouchPoints;
+		document.getElementById('orientation').value = window.orientation;
 		document.getElementById("mobile").innerHTML = "mobile() is " + mobile();
 		document.getElementById("ios").innerHTML = "iOS() is " + iOS();
 		document.getElementById("iosversion").innerHTML = "iOSversion() is " + iOSversion();
