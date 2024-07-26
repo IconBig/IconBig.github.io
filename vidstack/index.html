@@ -5,15 +5,31 @@
     <title>Vidstack Player</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdn.vidstack.io/player.css" />
-    <script src="https://cdn.vidstack.io/player.core" type="module"></script>
+    <!-- <script src="https://cdn.vidstack.io/player.core" type="module"></script> -->
     <!-- <script src="https://cdn.vidstack.io/player.core@1.11.21" type="module"></script> -->
 
 </head>
 <body>
 
-<media-player title="Sprite Fight" src="https://vjs.zencdn.net/v/oceans.mp4">
-  <media-provider></media-provider>
-</media-player>
+<!-- The player will be appended to this element. -->
+<div id="target"></div>
+
+<script type="module">
+  import { VidstackPlayer } from 'https://cdn.vidstack.io/player.core';
+
+  const player = await VidstackPlayer.create({
+    target: '#target',
+    title: 'Sprite Fight',
+    src: 'https://files.vidstack.io/sprite-fight/720p.mp4',
+    poster: 'https://files.vidstack.io/sprite-fight/poster.webp',
+    viewType: 'video',
+    streamType: 'on-demand',
+    logLevel: 'warn',
+    crossOrigin: true,
+    playsInline: true,
+    title: 'Sprite Fight',
+  });
+</script>
 
 </body>
 
